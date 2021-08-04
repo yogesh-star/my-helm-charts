@@ -1,0 +1,8 @@
+{{- if .Values.dispatch_service.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dispatch 
+data:
+  AMQP_HOST: {{ .Values.host }}
+{{- end }}

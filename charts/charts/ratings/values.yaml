@@ -1,0 +1,13 @@
+image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/ratings
+    tag: 5
+    pullPolicy: IfNotPresent
+deployment:
+  replicaCount: 1
+rating_service:
+  enabled:  true
+
+pdo_hosts: mysql:host=admin.cnbwakbdzeez.us-east-2.rds.amazonaws.com;dbname=ratings;charset=utf8mb4
+pdo_user: root
+pdo_pass: admin12345
+pdo_catalogue_endoint: http://catalogue:8080

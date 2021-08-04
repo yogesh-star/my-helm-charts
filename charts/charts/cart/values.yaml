@@ -1,0 +1,14 @@
+image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/cart
+    tag: 1
+    pullPolicy: IfNotPresent
+  
+cart_service:
+  enabled:  true
+
+host_catalogue: catalogue
+host_redis: redis
+host_cart:  8080
+
+deployment:
+  replicaCount: 1

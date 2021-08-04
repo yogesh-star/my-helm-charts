@@ -1,0 +1,15 @@
+image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/shipping
+    tag: 1
+    pullPolicy: IfNotPresent
+  
+shipping_service:
+  enabled:  true
+
+db_hosts: admin.cnbwakbdzeez.us-east-2.rds.amazonaws.com
+db_user:  root
+db_pass: admin12345
+db_cart_endoint: cart:8080
+
+deployment:
+  replicaCount: 1

@@ -1,0 +1,14 @@
+image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/jenks
+    tag: 3
+    pullPolicy: IfNotPresent
+  
+catalogue_service:
+  enabled:  true
+
+mongo_uri: mongodb://root:admin12345@docdb-2021-07-13-13-03-21.cnbwakbdzeez.us-east-2.docdb.amazonaws.com:27017/catalogue?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&retryWrites=false
+catalogue_port: 8080
+go_slow: 0
+
+deployment:
+  replicaCount: 1

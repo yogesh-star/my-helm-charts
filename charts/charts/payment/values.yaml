@@ -1,0 +1,19 @@
+image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/payment
+    tag: 1
+    pullPolicy: IfNotPresent
+  
+payment_service:
+  enabled:  true
+
+amqp_host: rabbitmq
+cart_host: cart
+user_host: user 
+payment_gateway: https://paypal.com/
+payment_delay: 0
+payment_port: 8080
+
+deployment:
+  replicaCount: 1
+payment:
+  gateway: null

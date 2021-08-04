@@ -1,0 +1,10 @@
+{{- if .Values.cart_service.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cart
+data:
+  REDIS_HOST: {{ .Values.host_redis }}
+  CATALOGUE_HOST: {{ .Values.host_catalogue }}
+  CART_SERVER_PORT: "{{ .Values.host_cart }}"
+{{- end }}

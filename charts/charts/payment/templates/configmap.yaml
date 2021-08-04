@@ -1,0 +1,13 @@
+{{- if .Values.payment_service.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payment
+data:
+  AMQP_HOST: {{ .Values.amqp_host }}
+  CART_HOST: {{ .Values.cart_host }}
+  USER_HOST: {{ .Values.user_host }}
+  PAYMENT_GATEWAY: {{ .Values.payment_gateway }}
+  PAYMENT_DELAY_MS: "{{ .Values.payment_delay }}"
+  SHOP_PAYMENT_PORT: "{{ .Values.payment_port }}"
+{{- end }}

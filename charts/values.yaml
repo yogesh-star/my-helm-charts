@@ -1,0 +1,171 @@
+## Catalogue-Service
+
+catalogue:
+  image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/jenks
+    tag: 20
+    pullPolicy: IfNotPresent
+  deployment:
+    replicaCount: 1
+  catalogue_service:
+    enabled:  true
+  mongo_uri: mongodb://root:admin12345@docdb-2021-07-13-13-03-21.cnbwakbdzeez.us-east-2.docdb.amazonaws.com:27017/catalogue?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&retryWrites=false
+  catalogue_port: 8080
+  go_slow: 0
+
+## Cart-Service
+
+cart: 
+  image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/cart
+    tag: 1
+    pullPolicy: IfNotPresent
+
+  cart_service:
+    enabled: true
+
+  host_catalogue: catalogue
+  host_redis: redis
+  host_cart:  8080
+
+## Dispatch-Service
+
+dispatch:
+  image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/dispatch
+    tag: 1
+    pullPolicy: IfNotPresent
+
+  dispatch_service:
+    enabled: true
+  host: rabbitmq
+
+## Payment-Service
+
+payment:
+  image:
+      repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/payment
+      tag: 1
+      pullPolicy: IfNotPresent
+    
+  payment_service:
+    enabled:  true
+
+  amqp_host: rabbitmq
+  cart_host: cart
+  user_host: user 
+  payment_gateway: https://paypal.com/
+  payment_delay: 0
+  payment_port: 8080
+
+  deployment:
+    replicaCount: 1
+
+  payment:
+    gateway: null
+
+## Rabbitmq
+
+rabbitmq:
+  rabbitmq_service:
+      enabled:  true
+  image:
+      repository: rabbitmq
+      tag: 3.7-management-alpine
+      pullPolicy: IfNotPresent
+
+## Rating Service
+
+ratings:
+  image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/ratings
+    tag: 5
+    pullPolicy: IfNotPresent
+  deployment:
+    replicaCount: 1
+  rating_service:
+    enabled: true
+  pdo_hosts: mysql:host=admin.cnbwakbdzeez.us-east-2.rds.amazonaws.com;dbname=ratings;charset=utf8mb4
+  pdo_user: root
+  pdo_pass: admin12345
+  pdo_catalogue_endoint: http://catalogue:8080
+
+## Redis
+
+redis:
+  image:
+      repository: redis
+      tag: 4.0.6
+      pullPolicy: IfNotPresent
+  statefulset:
+    replicaCount: 1
+  redis_service:
+    enabled:  true
+  redis:
+    storageClassName: custom-storage-class
+
+## Shipping-Service
+shipping:
+  image:
+      repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/shipping
+      tag: 1
+      pullPolicy: IfNotPresent
+    
+  shipping_service:
+    enabled:  true
+
+  db_hosts: admin.cnbwakbdzeez.us-east-2.rds.amazonaws.com
+  db_user:  root
+  db_pass: admin12345
+  db_cart_endoint: cart:8080
+
+  deployment:
+    replicaCount: 1
+
+## User-Service
+
+user:
+  image:
+      repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/user
+      tag: 1
+      pullPolicy: IfNotPresent
+    
+  user_service:
+    enabled:  true
+
+  mongo_uri: mongodb://root:admin12345@docdb-2021-07-13-13-03-21.cnbwakbdzeez.us-east-2.docdb.amazonaws.com:27017/catalogue?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&retryWrites=false
+  redis_host: redis
+  user_port: 8080
+
+  deployment:
+    replicaCount: 1
+
+## Web-Service
+
+web:
+  image:
+      repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/web
+      tag: 6
+      pullPolicy: IfNotPresent
+    
+  web_service:
+    enabled:  true
+
+  deployment:
+    replicaCount: 1
+  
+  nodeport: false
+
+  hostname: demo.service.squareops.co.in
+
+  host_catalogue: catalogue
+  host_user: user
+  host_cart: cart
+  host_ship: shipping
+  host_payment: payment
+  host_rating: ratings
+  host_instana: nginx-web
+
+  eum:
+  key: null
+  url: https://eum-eu-west-1.instana.io

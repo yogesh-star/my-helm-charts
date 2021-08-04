@@ -1,0 +1,10 @@
+image:
+    repository: redis
+    tag: 4.0.6
+    pullPolicy: IfNotPresent
+statefulset:
+  replicaCount: 1
+redis_service:
+  enabled:  true
+redis:
+  storageClassName: custom-storage-class

@@ -1,0 +1,43 @@
+{{- if .Values.rating_service.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratings
+  labels:
+    service: ratings
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      service: ratings
+  template:
+    metadata:
+      labels:
+        service: ratings
+    spec:
+      containers:
+      - name: ratings
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        envFrom:
+        - configMapRef:
+            name: rating
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        # readinessProbe:
+        #   httpGet:
+        #     path: /_health
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 5
+        #   failureThreshold: 30
+        #   successThreshold: 1
+      restartPolicy: Always
+{{- end }}

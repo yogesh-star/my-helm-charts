@@ -1,0 +1,26 @@
+image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/web
+    tag: 1
+    pullPolicy: IfNotPresent
+  
+web_service:
+  enabled:  true
+
+deployment:
+  replicaCount: 1
+
+host_catalogue: catalogue
+host_user: user
+host_cart: cart
+host_ship: shipping
+host_payment: payment
+host_rating: ratings
+host_instana: nginx-web
+
+nodeport: false
+eum:
+  key: null
+  url: https://eum-eu-west-1.instana.io
+
+hostname: demo.service.squareops.co.in
+

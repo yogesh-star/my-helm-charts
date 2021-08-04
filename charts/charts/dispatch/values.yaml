@@ -1,0 +1,12 @@
+image:
+    repository: 421320058418.dkr.ecr.us-east-2.amazonaws.com/dispatch
+    tag: 1
+    pullPolicy: IfNotPresent
+  
+dispatch_service:
+  enabled:  true
+
+host: rabbitmq
+
+deployment:
+  replicaCount: 1

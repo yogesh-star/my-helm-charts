@@ -1,0 +1,11 @@
+{{- if .Values.shipping_service.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shipping
+data:
+  DB_HOST: {{ .Values.db_hosts }}
+  DB_USER: {{ .Values.db_user }}
+  DB_PASS: {{ .Values.db_pass }}
+  CART_ENDPOINT: {{ .Values.db_cart_endoint }}
+{{- end }}

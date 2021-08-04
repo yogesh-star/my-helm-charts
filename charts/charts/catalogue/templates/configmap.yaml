@@ -1,0 +1,10 @@
+{{- if .Values.catalogue_service.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalogue
+data:
+  #MONGO_URL: {{ .Values.mongo_uri }}
+  CATALOGUE_SERVER_PORT: "{{ .Values.catalogue_port }}"
+  GO_SLOW: "{{ .Values.go_slow }}"
+{{- end }}

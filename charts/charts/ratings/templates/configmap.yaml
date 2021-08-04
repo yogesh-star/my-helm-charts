@@ -1,0 +1,11 @@
+{{- if .Values.rating_service.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rating
+data:
+  PDO_URL: {{ .Values.pdo_hosts }}
+  PDO_USERS: {{ .Values.pdo_user }}
+  PDO_PASS: {{ .Values.pdo_pass }}
+  CATALOGUE_URL: {{ .Values.pdo_catalogue_endoint }}
+{{- end }}

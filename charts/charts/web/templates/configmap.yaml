@@ -1,0 +1,14 @@
+{{- if .Values.web_service.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web
+data:
+  CATALOGUE_HOST: {{ .Values.host_catalogue }}
+  USER_HOST: {{ .Values.host_user }}
+  CART_HOST: {{ .Values.host_cart }}
+  SHIPPING_HOST: {{ .Values.host_ship }}
+  PAYMENT_HOST: {{ .Values.host_payment }}
+  RATINGS_HOST: {{ .Values.host_rating }}
+  INSTANA_SERVICE_NAME: {{ .Values.host_instana }}
+{{- end }}
