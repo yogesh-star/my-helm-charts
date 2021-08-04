@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  parent:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2021-08-04T09:56:38.178927146Z"
+    description: A Helm chart for Kubernetes for parent
+    digest: 2bb55002b4b6128f47a2b3a298b627cb95ba73eec2f612939adadcf17aa95c91
+    name: parent
+    urls:
+    - https://github.com/yogesh-star/my-helm-charts/releases/download/parent-1.0.0/parent-1.0.0.tgz
+    version: 1.0.0
+generated: "2021-08-04T09:56:37.878329038Z"
